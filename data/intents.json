@@ -1,49 +1,27 @@
 [
   {
-    "initiator": "yash",
+    "initiator": "alice",
     "initiatorAddress": "",
     "fromToken": "zUSDC",
     "toToken": "zUSDT",
     "amount": 1,
     "status": "active",
     "interestedParties": [
-      "daksh"
+      "bob"
     ],
-    "id": "2613",
-    "createdAt": "2025-10-25T18:57:22.612Z",
-    "selectedCounterparty": "daksh"
+    "id": "4258",
+    "createdAt": "2025-10-25T22:53:14.257Z",
+    "selectedCounterparty": "bob"
   },
   {
-    "initiator": "yash",
+    "initiator": "alice",
     "initiatorAddress": "",
     "fromToken": "zUSDC",
     "toToken": "zUSDT",
     "amount": 1,
     "status": "pending",
     "interestedParties": [],
-    "id": 2449,
-    "createdAt": "2025-10-25T18:57:22.448Z"
-  },
-  {
-    "initiator": "yash",
-    "initiatorAddress": "",
-    "fromToken": "zUSDC",
-    "toToken": "zUSDT",
-    "amount": 1,
-    "status": "pending",
-    "interestedParties": [],
-    "id": 4205,
-    "createdAt": "2025-10-25T18:47:14.205Z"
-  },
-  {
-    "initiator": "yash",
-    "initiatorAddress": "",
-    "fromToken": "zUSDC",
-    "toToken": "zUSDT",
-    "amount": 1,
-    "status": "pending",
-    "interestedParties": [],
-    "id": 4013,
-    "createdAt": "2025-10-25T18:47:14.012Z"
+    "id": 3923,
+    "createdAt": "2025-10-25T22:53:13.922Z"
   }
 ]

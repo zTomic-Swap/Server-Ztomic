@@ -5,28 +5,32 @@ const path = require("path");
 const { randomUUID } = require("crypto");
 const { mulPointEscalar, Base8 } = require("@zk-kit/baby-jubjub");
 
-const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(__dirname, "data"));
+const DATA_DIR = path.resolve(
+  process.env.DATA_DIR || path.join(__dirname, "data")
+);
 const INTENTS_FILE = path.join(DATA_DIR, "intents.json");
 const USERS_FILE = path.join(DATA_DIR, "users.json");
 const PORT = process.env.PORT || 3001;
 
-// Helper function to convert string to hex for key generation
-function convertToHex(str) {
-  let hex = '';
-  for(let i = 0; i < str.length; i++) {
-    hex += '' + str.charCodeAt(i).toString(16);
-  }
-  return hex;
-}
+// --- FIXED ---
+// Deleted convertToHex function
+// --- END FIX ---
 
 // Helper function to derive public key from secret
 function generateKeysFromSecret(secretValue) {
-  const hexSecret = convertToHex(secretValue);
-  const privateKey = BigInt("0x" + hexSecret);
+  // --- FIXED ---
+  // Use the secret string directly with BigInt
+  console.log("secret key string", secretValue);
+  const privateKey = BigInt(secretValue);
+  // --- END FIX ---
+
   const publicKey = mulPointEscalar(Base8, privateKey);
   return {
-    pubKeyX: `0x${publicKey[0].toString(16)}`,
-    pubKeyY: `0x${publicKey[1].toString(16)}`,
+    // --- BEST PRACTICE ---
+    // Pad the hex strings to 64 characters (32 bytes)
+    pubKeyX: `0x${publicKey[0].toString(16).padStart(64, "0")}`,
+    pubKeyY: `0x${publicKey[1].toString(16).padStart(64, "0")}`,
+    // --- END BEST PRACTICE ---
   };
 }
 
@@ -63,11 +67,11 @@ app.get("/intents/:id", async (req, res) => {
     const { id } = req.params;
     const intents = await readJSON(INTENTS_FILE);
     const intent = intents.find((i) => String(i.id) === String(id));
-    
+
     if (!intent) {
       return res.status(404).json({ error: "Intent not found" });
     }
-    
+
     res.json(intent);
   } catch (err) {
     console.error("GET /intents/:id error", err);
@@ -78,14 +82,20 @@ app.get("/intents/:id", async (req, res) => {
 app.post("/intents", async (req, res) => {
   try {
     const body = req.body;
-    if (!body || !body.initiator || !body.fromToken || !body.toToken || typeof body.amount !== "number") {
+    if (
+      !body ||
+      !body.initiator ||
+      !body.fromToken ||
+      !body.toToken ||
+      typeof body.amount !== "number"
+    ) {
       return res.status(400).json({ error: "Invalid intent payload" });
     }
-    
+
     // Generate a simple numeric ID based on current timestamp
     const timestamp = Date.now();
     const orderId = (timestamp % 10000) + 1;
-    
+
     const newIntent = {
       ...body,
       id: orderId, // Numeric ID
@@ -108,10 +118,10 @@ app.put("/intents/:id", async (req, res) => {
     const { id } = req.params;
     const updates = req.body;
     const intents = await readJSON(INTENTS_FILE);
-   const intentIndex = intents.findIndex((i) => String(i.id) === String(id));
-    
+    const intentIndex = intents.findIndex((i) => String(i.id) === String(id));
+
     if (intentIndex === -1) {
-      return res.status(404).json({ error: "Intent not found" });
+      return res.status(4404).json({ error: "Intent not found" });
     }
 
     const updatedIntent = {
@@ -119,7 +129,7 @@ app.put("/intents/:id", async (req, res) => {
       ...updates,
       id, // Ensure ID cannot be changed
     };
-    
+
     intents[intentIndex] = updatedIntent;
     await writeJSON(INTENTS_FILE, intents);
     res.json(updatedIntent);
@@ -134,11 +144,11 @@ app.delete("/intents/:id", async (req, res) => {
     const { id } = req.params;
     const intents = await readJSON(INTENTS_FILE);
     const newIntents = intents.filter((i) => String(i.id) !== String(id));
-    
+
     if (intents.length === newIntents.length) {
       return res.status(404).json({ error: "Intent not found" });
     }
-    
+
     await writeJSON(INTENTS_FILE, newIntents);
     res.json({ message: "Intent deleted" });
   } catch (err) {
@@ -164,7 +174,9 @@ app.post("/users", async (req, res) => {
   try {
     const { userName, secretValue } = req.body;
     if (!userName || !secretValue) {
-      return res.status(400).json({ error: "userName and secretValue are required" });
+      return res
+        .status(400)
+        .json({ error: "userName and secretValue are required" });
     }
 
     const users = await readJSON(USERS_FILE);
@@ -181,7 +193,7 @@ app.post("/users", async (req, res) => {
       pubKeyX,
       pubKeyY,
       id: randomUUID(),
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     };
 
     const updated = [newUser, ...users];
@@ -200,7 +212,7 @@ app.put("/users/:userName", async (req, res) => {
 
     const users = await readJSON(USERS_FILE);
     const userIndex = users.findIndex((u) => u.userName === userName);
-    
+
     if (userIndex === -1) {
       return res.status(404).json({ error: "User not found" });
     }
@@ -218,7 +230,7 @@ app.put("/users/:userName", async (req, res) => {
       ...users[userIndex],
       ...updates,
       ...generatedKeys,
-      userName // Ensure userName stays the same
+      userName, // Ensure userName stays the same
     };
 
     users[userIndex] = updatedUser;
