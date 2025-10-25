@@ -1,0 +1,49 @@
+[
+  {
+    "initiator": "yash",
+    "initiatorAddress": "",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "amount": 1,
+    "status": "active",
+    "interestedParties": [
+      "daksh"
+    ],
+    "id": "2613",
+    "createdAt": "2025-10-25T18:57:22.612Z",
+    "selectedCounterparty": "daksh"
+  },
+  {
+    "initiator": "yash",
+    "initiatorAddress": "",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "amount": 1,
+    "status": "pending",
+    "interestedParties": [],
+    "id": 2449,
+    "createdAt": "2025-10-25T18:57:22.448Z"
+  },
+  {
+    "initiator": "yash",
+    "initiatorAddress": "",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "amount": 1,
+    "status": "pending",
+    "interestedParties": [],
+    "id": 4205,
+    "createdAt": "2025-10-25T18:47:14.205Z"
+  },
+  {
+    "initiator": "yash",
+    "initiatorAddress": "",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "amount": 1,
+    "status": "pending",
+    "interestedParties": [],
+    "id": 4013,
+    "createdAt": "2025-10-25T18:47:14.012Z"
+  }
+]
