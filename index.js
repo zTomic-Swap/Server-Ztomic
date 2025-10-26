@@ -87,7 +87,8 @@ app.post("/intents", async (req, res) => {
       !body.initiator ||
       !body.fromToken ||
       !body.toToken ||
-      typeof body.amount !== "number"
+      !body["on-chain"] ||
+      typeof body.amount !== "string"
     ) {
       return res.status(400).json({ error: "Invalid intent payload" });
     }

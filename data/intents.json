@@ -1,27 +1,136 @@
 [
   {
     "initiator": "alice",
-    "initiatorAddress": "",
     "fromToken": "zUSDC",
     "toToken": "zUSDT",
-    "amount": 1,
-    "status": "active",
-    "interestedParties": [
-      "bob"
-    ],
-    "id": "4258",
-    "createdAt": "2025-10-25T22:53:14.257Z",
-    "selectedCounterparty": "bob"
+    "on-chain": "hedera",
+    "amount": "1",
+    "status": "pending",
+    "interestedParties": [],
+    "id": 9827,
+    "createdAt": "2025-10-26T02:33:29.826Z"
   },
   {
     "initiator": "alice",
-    "initiatorAddress": "",
     "fromToken": "zUSDC",
     "toToken": "zUSDT",
-    "amount": 1,
+    "on-chain": "hedera",
+    "amount": "1",
     "status": "pending",
     "interestedParties": [],
-    "id": 3923,
-    "createdAt": "2025-10-25T22:53:13.922Z"
+    "id": 9735,
+    "createdAt": "2025-10-26T02:33:29.734Z"
+  },
+  {
+    "initiator": "alice",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "on-chain": "hedera",
+    "amount": "1",
+    "status": "active",
+    "interestedParties": [
+      {
+        "identity": [
+          "bob"
+        ],
+        "on-chain": [
+          "hedera"
+        ]
+      }
+    ],
+    "id": "7245",
+    "createdAt": "2025-10-26T02:26:07.244Z",
+    "selectedCounterparty": {
+      "identity": "bob",
+      "on-chain": "hedera"
+    }
+  },
+  {
+    "initiator": "alice",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "on-chain": "hedera",
+    "amount": "1",
+    "status": "pending",
+    "interestedParties": [],
+    "id": 7139,
+    "createdAt": "2025-10-26T02:26:07.138Z"
+  },
+  {
+    "initiator": "alice",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "on-chain": "hedera",
+    "amount": "1",
+    "status": "pending",
+    "interestedParties": [],
+    "id": 3465,
+    "createdAt": "2025-10-26T02:15:23.464Z"
+  },
+  {
+    "initiator": "alice",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "on-chain": "hedera",
+    "amount": "1",
+    "status": "pending",
+    "interestedParties": [],
+    "id": 3084,
+    "createdAt": "2025-10-26T02:15:23.083Z"
+  },
+  {
+    "initiator": "alice",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "on-chain": "sepolia",
+    "amount": "1",
+    "status": "pending",
+    "interestedParties": [
+      {
+        "identity": [
+          "bob"
+        ],
+        "on-chain": [
+          "hedera"
+        ]
+      }
+    ],
+    "id": "3823",
+    "createdAt": "2025-10-26T02:02:33.822Z"
+  },
+  {
+    "initiator": "alice",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "on-chain": "sepolia",
+    "amount": "1",
+    "status": "pending",
+    "interestedParties": [],
+    "id": 1334,
+    "createdAt": "2025-10-26T02:02:31.333Z"
+  },
+  {
+    "initiator": "alice",
+    "fromToken": "zUSDC",
+    "toToken": "zUSDT",
+    "on-chain": "hedera",
+    "amount": "1",
+    "status": "active",
+    "interestedParties": [
+      {
+        "identity": [
+          "bob"
+        ],
+        "on-chain": [
+          "sepolia"
+        ]
+      }
+    ],
+    "id": "6140",
+    "createdAt": "2025-10-26T01:34:06.139Z",
+    "selectedCounterparty": {
+      "identity": "bob",
+      "on-chain": "sepolia"
+    }
   }
 ]
